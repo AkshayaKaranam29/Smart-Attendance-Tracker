@@ -1,0 +1,56 @@
+﻿.next/dev/types/validator.ts(297,31): error TS2344: Type 'typeof import("C:/Users/Akshaya/Downloads/Smart Attendance Tracker/app/api/classrooms/[id]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/classrooms/[id]">'.
+  Types of property 'PUT' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<{ id: string; name: string; isArchived: boolean; createdAt: Date; department: string; semester: number; section: string | null; createdBy: string; }> | NextResponse<...>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/dev/types/validator.ts(351,31): error TS2344: Type 'typeof import("C:/Users/Akshaya/Downloads/Smart Attendance Tracker/app/api/subjects/[id]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/subjects/[id]">'.
+  Types of property 'PUT' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<{ error: string; }> | NextResponse<{ classroom: { id: string; name: string; isArchived: boolean; createdAt: Date; department: string; semester: number; section: string | null; createdBy: string; }; teacher: { ...; }; } & { ...; }>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/types/validator.ts(297,31): error TS2344: Type 'typeof import("C:/Users/Akshaya/Downloads/Smart Attendance Tracker/app/api/classrooms/[id]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/classrooms/[id]">'.
+  Types of property 'PUT' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<{ id: string; name: string; isArchived: boolean; createdAt: Date; department: string; semester: number; section: string | null; createdBy: string; }> | NextResponse<...>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+.next/types/validator.ts(351,31): error TS2344: Type 'typeof import("C:/Users/Akshaya/Downloads/Smart Attendance Tracker/app/api/subjects/[id]/route")' does not satisfy the constraint 'RouteHandlerConfig<"/api/subjects/[id]">'.
+  Types of property 'PUT' are incompatible.
+    Type '(req: Request, { params }: { params: { id: string; }; }) => Promise<NextResponse<{ error: string; }> | NextResponse<{ classroom: { id: string; name: string; isArchived: boolean; createdAt: Date; department: string; semester: number; section: string | null; createdBy: string; }; teacher: { ...; }; } & { ...; }>>' is not assignable to type '(request: NextRequest, context: { params: Promise<{ id: string; }>; }) => void | Response | Promise<void | Response>'.
+      Types of parameters '__1' and 'context' are incompatible.
+        Type '{ params: Promise<{ id: string; }>; }' is not assignable to type '{ params: { id: string; }; }'.
+          Types of property 'params' are incompatible.
+            Property 'id' is missing in type 'Promise<{ id: string; }>' but required in type '{ id: string; }'.
+app/admin/page.tsx(73,67): error TS2339: Property 'department' does not exist on type '{ code: string; id: string; subjectId: string; name: string; classroomId: string; teacherId: string; schedule: ClassSchedule[]; students: string[]; roomNo: string; wifiSSID?: string | undefined; isArchived: boolean; createdAt: string; }'.
+app/admin/page.tsx(75,53): error TS2339: Property 'department' does not exist on type '{ code: string; id: string; subjectId: string; name: string; classroomId: string; teacherId: string; schedule: ClassSchedule[]; students: string[]; roomNo: string; wifiSSID?: string | undefined; isArchived: boolean; createdAt: string; }'.
+tests/auth-utils.test.ts(3,1): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+tests/auth-utils.test.ts(4,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+tests/auth-utils.test.ts(16,9): error TS2304: Cannot find name 'expect'.
+tests/auth-utils.test.ts(17,9): error TS2304: Cannot find name 'expect'.
+tests/auth-utils.test.ts(20,9): error TS2304: Cannot find name 'expect'.
+tests/auth-utils.test.ts(21,9): error TS2304: Cannot find name 'expect'.
+tests/auth-utils.test.ts(22,9): error TS2304: Cannot find name 'expect'.
+tests/auth-utils.test.ts(23,9): error TS2304: Cannot find name 'expect'.
+tests/auth-utils.test.ts(24,9): error TS2304: Cannot find name 'expect'.
+tests/auth-utils.test.ts(27,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+tests/auth-utils.test.ts(29,9): error TS2304: Cannot find name 'expect'.
+tests/timetable-logic.test.ts(15,1): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+tests/timetable-logic.test.ts(16,5): error TS2304: Cannot find name 'beforeEach'.
+tests/timetable-logic.test.ts(20,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+tests/timetable-logic.test.ts(24,9): error TS2304: Cannot find name 'expect'.
+tests/timetable-logic.test.ts(25,9): error TS2304: Cannot find name 'expect'.
+tests/timetable-logic.test.ts(28,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+tests/timetable-logic.test.ts(32,9): error TS2304: Cannot find name 'expect'.
+tests/timetable-logic.test.ts(33,9): error TS2304: Cannot find name 'expect'.
+tests/timetable-logic.test.ts(36,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+tests/timetable-logic.test.ts(41,9): error TS2304: Cannot find name 'expect'.
+tests/timetable-logic.test.ts(44,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+tests/timetable-logic.test.ts(52,9): error TS2304: Cannot find name 'expect'.
+tests/timetable-logic.test.ts(53,9): error TS2304: Cannot find name 'expect'.
+tests/timetable-logic.test.ts(56,9): error TS2304: Cannot find name 'expect'.
+tmp_db_test.ts(16,52): error TS2353: Object literal may only specify known properties, and 'roomNo' does not exist in type 'ClassroomSelect<DefaultArgs>'.

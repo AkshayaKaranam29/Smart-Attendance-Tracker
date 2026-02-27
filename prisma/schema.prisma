@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  role         String    // "admin", "teacher", "student"
+  phone        String?
+  avatar       String?
+  department   String?
+  enrollmentNo String?   @unique
+  deviceId     String?
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  password     String    // hashed password
+
+  // Relations
+  classroomsCreated Classroom[] @relation("ClassroomCreator")
+  subjectsTaught    Subject[]   @relation("SubjectTeacher")
+  timetableSlots    TimetableSlot[] @relation("TeacherTimeSlots")
+  attendances       AttendanceRecord[] @relation("StudentAttendance")
+  attendanceSessions AttendanceSession[] @relation("SessionTeacher")
+}
+
+model Classroom {
+  id          String   @id @default(cuid())
+  name        String
+  department  String
+  semester    Int
+  section     String?
+  createdBy   String
+  isArchived  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  // Relations
+  creator     User     @relation("ClassroomCreator", fields: [createdBy], references: [id])
+  subjects    Subject[]
+  timetableSlots TimetableSlot[]
+}
+
+model Subject {
+  id          String   @id @default(cuid())
+  subjectId   String   @unique // unique code like "CS301"
+  name        String
+  classroomId String
+  teacherId   String
+  roomNo      String
+  wifiSSID    String?
+  isArchived  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  // Relations
+  classroom   Classroom @relation(fields: [classroomId], references: [id])
+  teacher     User      @relation("SubjectTeacher", fields: [teacherId], references: [id])
+  timetableSlots TimetableSlot[]
+  attendanceSessions AttendanceSession[]
+  attendanceRecords  AttendanceRecord[]
+}
+
+// Map subjects to specific time slots in the week
+model TimetableSlot {
+  id          String   @id @default(cuid())
+  subjectId   String
+  classroomId String
+  teacherId   String
+  day         String   // "Monday", "Tuesday", etc.
+  startTime   String   // "09:00"
+  endTime     String   // "10:00"
+  roomNo      String
+
+  // Relations
+  subject     Subject   @relation(fields: [subjectId], references: [id])
+  classroom   Classroom @relation(fields: [classroomId], references: [id])
+  teacher     User      @relation("TeacherTimeSlots", fields: [teacherId], references: [id])
+  
+  @@unique([teacherId, day, startTime])
+  @@unique([classroomId, day, startTime])
+}
+
+model Holiday {
+  id        String   @id @default(cuid())
+  date      DateTime // Can store solely the date part 
+  name      String
+  type      String   // "weekend", "festival", "institutional", "custom"
+  region    String?
+  createdBy String?
+}
+
+model AttendanceSession {
+  id          String   @id @default(cuid())
+  subjectId   String
+  teacherId   String
+  date        DateTime
+  startTime   String
+  endTime     String
+  qrSecret    String
+  isActive    Boolean  @default(true)
+  
+  // Geofence data
+  lat              Float
+  lng              Float
+  radiusMeters     Int
+
+  // Relations
+  subject     Subject  @relation(fields: [subjectId], references: [id])
+  teacher     User     @relation("SessionTeacher", fields: [teacherId], references: [id])
+  records     AttendanceRecord[]
+}
+
+model AttendanceRecord {
+  id                 String   @id @default(cuid())
+  sessionId          String
+  studentId          String
+  subjectId          String
+  timestamp          DateTime @default(now())
+  status             String   // "present", "absent", "late", "excused", "holiday"
+  verificationMethod String   // JSON array string like '["qr", "location"]'
+  
+  // Location
+  lat                Float?
+  lng                Float?
+  
+  fraudScore         Int      @default(0)
+  flagged            Boolean  @default(false)
+  flagReason         String?
+  synced             Boolean  @default(true)
+
+  // Relations
+  session     AttendanceSession @relation(fields: [sessionId], references: [id])
+  student     User              @relation("StudentAttendance", fields: [studentId], references: [id])
+  subject     Subject           @relation(fields: [subjectId], references: [id])
+  
+  @@unique([sessionId, studentId])
+}
